@@ -1,0 +1,11 @@
+POST http://localhost:4000/patient
+Content-Type: application/json
+
+{
+    "name": "Arianna",
+    "id": 1234567,
+    "gender": "F",
+    "age": 20,
+    "bloodType": "A+",
+    "medicalConditions": "healthy"
+}
