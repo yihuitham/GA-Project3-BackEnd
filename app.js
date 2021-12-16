@@ -16,4 +16,7 @@ app.use(express.static('public'));
 const patientController = require('./controllers/patient');
 app.use('/patient', patientController);
 
+const staffController = require('./controllers/staff');
+app.use('/staff', staffController);
+
 module.exports = app;
