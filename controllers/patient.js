@@ -44,5 +44,15 @@ router.put('/:_id', async (req, res) => {
 });
 
 //Delete Request
+router.delete('/:_id', async (req, res) => {
+  const deletePatient = await Patient.findByIdAndDelete(req.params._id);
+  if (!deletePatient) {
+    res
+      .status(400)
+      .send({ message: 'Patient not found, deletion unsuccessful' });
+    return;
+  }
+  res.send(deletePatient);
+});
 
 module.exports = router;

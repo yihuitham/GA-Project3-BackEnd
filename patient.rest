@@ -30,4 +30,4 @@ Content-Type: application/json
 }
 
 ### Delete Patient Request
-DELETE  http://localhost:4000/patient/:_id
+DELETE  http://localhost:4000/patient/61bc31cd52b377b7c8c1e4f0
