@@ -2,10 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Patient = require('../models/patient');
 
-router.get('/', (req, res) => {
-  res.send('patient route');
-});
-
+//Create Request
 router.post('/', async (req, res) => {
   try {
     const foundPatient = await Patient.findOne({ id: req.body.id });
@@ -21,5 +18,19 @@ router.post('/', async (req, res) => {
     return;
   }
 });
+
+//Read Request
+router.get('/:_id', async (req, res) => {
+  const foundPatient = await Patient.findById(req.params._id);
+  if (!foundPatient) {
+    res.status(404).send({ message: 'Patient not found' });
+    return;
+  }
+  res.send(foundPatient);
+});
+
+//Create Request
+
+//Delete Request
 
 module.exports = router;
