@@ -5,12 +5,12 @@ const Patient = require('../models/patient');
 //Create Request
 router.post('/', async (req, res) => {
   try {
-    const foundPatient = await Patient.findOne({ id: req.body.id });
+    const foundPatient = await Patient.findOne({ nric: req.body.nric });
     if (!foundPatient) {
       const newPatient = await Patient.create(req.body);
       res.send(newPatient);
     } else {
-      res.status(403).send({ message: 'Patient ID already exist' });
+      res.status(403).send({ message: 'NRIC already exist' });
       return;
     }
   } catch {
