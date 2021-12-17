@@ -29,7 +29,19 @@ router.get('/:_id', async (req, res) => {
   res.send(foundPatient);
 });
 
-//Create Request
+//Update Request
+router.put('/:_id', async (req, res) => {
+  const updatePatient = await Patient.findByIdAndUpdate(
+    req.params._id,
+    req.body,
+    { new: true }
+  );
+  if (!updatePatient) {
+    res.status(400).send({ message: 'Patient update unsuccessful' });
+    return;
+  }
+  res.send(updatePatient);
+});
 
 //Delete Request
 

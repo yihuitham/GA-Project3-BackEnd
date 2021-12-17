@@ -16,7 +16,18 @@ Content-Type: application/json
 GET  http://localhost:4000/patient/61bc315f52b377b7c8c1e4f3
 
 ### Update Request
-POST http://localhost:4000/patient/:_id
+PUT  http://localhost:4000/patient/61bc31cd52b377b7c8c1e4f6
+Content-Type: application/json
+
+{
+    "name": "Arianna",
+    "id": "1234502",
+    "gender": "F",
+    "age": 21,
+    "bloodType": "A+",
+    "allergy": [],
+    "medicalCondition": "healthy"
+}
 
 ### Delete Patient Request
 DELETE  http://localhost:4000/patient/:_id
