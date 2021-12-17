@@ -1,0 +1,17 @@
+### Create Request
+POST http://localhost:4000/staff
+Content-Type: application/json
+
+{
+  "name": "debbie",
+  "gender": "F",
+  "contact": 12378,
+  "role": "Nurse",
+  "speciality": ["general"]
+}
+
+### Read Request
+
+### Update Request
+
+### Delete Patient Request

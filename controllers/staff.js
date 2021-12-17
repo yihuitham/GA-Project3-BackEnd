@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const foundStaff = await Staff.findOne({ id: req.body.id });
+    const foundStaff = await Staff.findOne({ staff_id: req.body.staff_id });
     if (!foundStaff) {
       const newStaff = await Staff.create(req.body);
       res.send(newStaff);
