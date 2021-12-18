@@ -19,3 +19,9 @@ GET http://localhost:4000/operation
 ### Update Request
 
 ### Delete Patient Request
+
+### clear database
+DELETE   http://localhost:4000/operation/cleardata
+
+### Seed data
+POST http://localhost:4000/operation/seed

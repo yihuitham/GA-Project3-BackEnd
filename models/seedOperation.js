@@ -2,11 +2,11 @@ const operationData = [
   {
     operatingRoom: 1,
     operation: 'heart surgery',
-    surgeonID: '61bd9c1991a5e54ad779bd9c',
+    surgeonID: '61bda23d80013f651fc63971',
     nursesID: [
-      '61bd9c1991a5e54ad779bda1',
-      '61bd9c1991a5e54ad779bd9f',
-      '61bd9c1991a5e54ad779bda2',
+      '61bda23d80013f651fc63977',
+      '61bda23d80013f651fc63976',
+      '61bda23d80013f651fc63978',
     ],
     patientID: '61bc4985cbc75ea95083b451',
     date: '2022-01-23',

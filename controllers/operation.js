@@ -54,4 +54,16 @@ router.get('/', async (req, res) => {
 
 //Delete Request
 
+//clear staff data
+router.delete('/cleardata', async (req, res) => {
+  await Operation.deleteMany();
+  res.send('Operation database cleared');
+});
+
+//seed staff
+const operationData = require('../models/seedOperation');
+router.post('/seed', (req, res) => {
+  Operation.create(operationData);
+});
+
 module.exports = router;
