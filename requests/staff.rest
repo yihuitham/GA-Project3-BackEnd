@@ -14,4 +14,4 @@ Content-Type: application/json
 
 ### Update Request
 
-### Delete Patient Request
+### Delete Request

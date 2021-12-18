@@ -55,4 +55,16 @@ router.delete('/:_id', async (req, res) => {
   res.send(deletePatient);
 });
 
+//clear patient data
+router.delete('/cleardata', async (req, res) => {
+  await Patient.deleteMany();
+  res.send('Patient database cleared');
+});
+
+//seed staff
+const staffPatient = require('../models/seedPatient');
+router.post('/seed', (req, res) => {
+  Patient.create(patientData);
+});
+
 module.exports = router;

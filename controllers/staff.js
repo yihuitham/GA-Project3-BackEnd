@@ -60,6 +60,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+//clear staff data
 router.delete('/cleardata', async (req, res) => {
   await Staff.deleteMany();
   res.send('Staff database cleared');
