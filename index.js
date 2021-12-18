@@ -14,3 +14,13 @@ mongoose.connect(MONGO_URL).then(async () => {
     console.log('hospital backend app listening on', PORT);
   });
 });
+
+// //clusterA  //model A B
+// const conn  =  await mongoose.createConnection('')
+
+// const patientModel = conn.model('patients'....);
+
+// patientModel.useDb('sgh').findOne()
+
+// //clusterB  //model C D
+// mongoose.createConnection('')
