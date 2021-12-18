@@ -8,7 +8,7 @@ const patientSchema = mongoose.Schema({
   bloodType: { type: String, require: true },
   allergy: [{ type: String, require: true }],
   medicalCondition: { type: String, require: true },
-  medicalRecord: { type: String },
+  medicalRecord: String,
 });
 
 module.exports = mongoose.model('Patient', patientSchema);

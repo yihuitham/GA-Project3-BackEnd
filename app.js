@@ -13,10 +13,16 @@ app.use(methodOverride('_method'));
 app.use(express.static('public'));
 
 //CONTROLLERS
+//patient controller
 const patientController = require('./controllers/patient');
 app.use('/patient', patientController);
 
+//staff controller
 const staffController = require('./controllers/staff');
 app.use('/staff', staffController);
+
+//operation controller
+const operationController = require('./controllers/operation');
+app.use('/operation', operationController);
 
 module.exports = app;

@@ -1,0 +1,20 @@
+### Create Request
+POST http://localhost:4000/operation
+Content-Type: application/json
+
+{
+    "operatingRoom": 1,
+    "operation": "heart surgery",
+    "surgeonID": ObjectId("61bc4166e4014bd051af27e1"),
+    "nursesID": [ObjectId("61bc4281e4014bd051af27f7"),ObjectId("61bc42b9e4014bd051af2806"),ObjectId("61bc42dce4014bd051af2810")],
+    "patientID": ObjectId("61bc4985cbc75ea95083b451"),
+    "date": 2022-01-23,
+    "time": "14:00:00",
+    "description": "No previous heart surgery"
+}
+
+### Read Request
+
+### Update Request
+
+### Delete Patient Request
