@@ -17,6 +17,9 @@ Content-Type: application/json
     "postOpReport": ""
   }
 
+### Read one operation
+GET  http://localhost:4000/operation/61bf52aa0983af5ce8b62af2
+
 ### Read all operations
 GET http://localhost:4000/operation
 
