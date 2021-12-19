@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const staffSchema = mongoose.Schema({
+  hospital: { type: String, require: true, default: 'Mount Elizabeth' },
   loginID: { type: String, require: true, unique: true },
   password: { type: String, require: true },
   NRIC: { type: String, require: true, unique: true },
