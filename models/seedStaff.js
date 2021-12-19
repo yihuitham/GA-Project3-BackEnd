@@ -48,7 +48,7 @@ const staffData = [
     gender: 'M',
     contact: 12378,
     role: 'Doctor',
-    speciality: ['otolaryngology'],
+    speciality: ['thoracic'],
   },
 
   {
