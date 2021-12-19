@@ -21,6 +21,23 @@ Content-Type: application/json
 GET http://localhost:4000/operation
 
 ### Update Request
+PUT http://localhost:4000/operation/61bf52aa0983af5ce8b62af2
+Content-Type: application/json
+
+{
+    "operatingRoom": 8,
+    "operation": "heart surgery",
+    "surgeonID": "61bda23d80013f651fc63974",
+    "nursesID": [
+      "61bda23d80013f651fc63977",
+      "61bda23d80013f651fc63976",
+      "61bda23d80013f651fc63978"
+    ],
+    "patientID": "61bc4985cbc75ea95083b451",
+    "date": "2022-01-23",
+    "time": "14:00:00",
+    "postOpReport": ""
+  }
 
 ### Delete one operation
 DELETE http://localhost:4000/operation/61bf528f0983af5ce8b62aec

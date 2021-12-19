@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
     } else {
       res
         .status(403)
-        .send({ message: 'Operation room already booked on selected date' });
+        .send({ message: 'Operation room not available on selected date' });
       return;
     }
   } catch {
@@ -52,6 +52,31 @@ router.get('/', async (req, res) => {
 });
 
 // Update one operation
+router.put('/:_id', async (req, res) => {
+  try {
+    const foundOperation = await Operation.findOne({
+      operatingRoom: req.body.operatingRoom,
+      date: req.body.date,
+    });
+    if (foundOperation._id === req.params._id) {
+      const updateOperation = await Operation.findByIdAndUpdate(
+        req.params._id,
+        req.body,
+        { new: true }
+      );
+      res.send(updateOperation);
+      return;
+    } else {
+      res
+        .status(403)
+        .send({ message: 'Operation room not available on selected date' });
+      return;
+    }
+  } catch {
+    res.status(500).send({ message: 'Unexpected Error' });
+    return;
+  }
+});
 
 // Delete all operations
 router.delete('/cleardata', async (req, res) => {
