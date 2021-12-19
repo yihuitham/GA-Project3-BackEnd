@@ -1,4 +1,4 @@
-### Create Request
+### Create one patient
 POST http://localhost:4000/patient
 Content-Type: application/json
 
@@ -12,10 +12,13 @@ Content-Type: application/json
     "medicalCondition": "G6PD"
 }
 
-### Read Request
+### Read one patient
 GET  http://localhost:4000/patient/61bc315f52b377b7c8c1e4f3
 
-### Update Request
+### Read all patients
+GET http://localhost:4000/patient/all
+
+### Update one patient
 PUT  http://localhost:4000/patient/61bc31cd52b377b7c8c1e4f6
 Content-Type: application/json
 
@@ -29,5 +32,11 @@ Content-Type: application/json
     "medicalCondition": "healthy"
 }
 
-### Delete Patient Request
+### Delete one patient 
 DELETE  http://localhost:4000/patient/61bc31cd52b377b7c8c1e4f0
+
+### Delete all patients
+DELETE   http://localhost:4000/patient/cleardata
+
+### Seed patients
+POST http://localhost:4000/patient/seed

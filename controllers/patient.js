@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Patient = require('../models/patient');
 
-//Create Request
+// Create one patient
 router.post('/', async (req, res) => {
   try {
     const foundPatient = await Patient.findOne({ nric: req.body.nric });
@@ -19,7 +19,13 @@ router.post('/', async (req, res) => {
   }
 });
 
-//Read Request
+// Read all patients
+router.get('/all', async (req, res) => {
+  const allPatients = await Patient.find({});
+  res.send(allPatients);
+});
+
+// Read one patient
 router.get('/:_id', async (req, res) => {
   const foundPatient = await Patient.findById(req.params._id);
   if (!foundPatient) {
@@ -29,7 +35,7 @@ router.get('/:_id', async (req, res) => {
   res.send(foundPatient);
 });
 
-//Update Request
+// Update one patient
 router.put('/:_id', async (req, res) => {
   const updatePatient = await Patient.findByIdAndUpdate(
     req.params._id,
@@ -43,7 +49,13 @@ router.put('/:_id', async (req, res) => {
   res.send(updatePatient);
 });
 
-//Delete Request
+// Delete all patients
+router.delete('/cleardata', async (req, res) => {
+  await Patient.deleteMany();
+  res.send('Patient database cleared');
+});
+
+//Delete one patient
 router.delete('/:_id', async (req, res) => {
   const deletePatient = await Patient.findByIdAndDelete(req.params._id);
   if (!deletePatient) {
@@ -55,16 +67,11 @@ router.delete('/:_id', async (req, res) => {
   res.send(deletePatient);
 });
 
-//clear patient data
-router.delete('/cleardata', async (req, res) => {
-  await Patient.deleteMany();
-  res.send('Patient database cleared');
-});
-
-//seed staff
-const staffPatient = require('../models/seedPatient');
-router.post('/seed', (req, res) => {
-  Patient.create(patientData);
+// Seed patients
+const patientData = require('../models/seedPatient');
+router.post('/seed', async (req, res) => {
+  const patientSeeds = await Patient.create(patientData);
+  res.send(patientSeeds);
 });
 
 module.exports = router;
