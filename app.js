@@ -1,4 +1,8 @@
 //DEPENDENCIES
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const jwt = require('express-jwt');
+const jwtDecode = require('jwt-decode');
 const express = require('express');
 const app = express();
 const methodOverride = require('method-override');
@@ -13,6 +17,11 @@ app.use(methodOverride('_method'));
 app.use(express.static('public'));
 
 //CONTROLLERS
+
+// login controller
+const loginController = require('./controllers/userLogin');
+app.use('/authenticate', loginController);
+
 //patient controller
 const patientController = require('./controllers/patient');
 app.use('/patient', patientController);
