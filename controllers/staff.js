@@ -68,8 +68,12 @@ router.delete('/cleardata', async (req, res) => {
 
 //seed staff
 const staffData = require('../models/seedStaff');
-router.post('/seed', (req, res) => {
-  Staff.create(staffData);
+router.post('/seed', async (req, res) => {
+  staffData.forEach((user) => {
+    user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));
+  });
+  const seedData = await Staff.create(staffData);
+  res.send(seedData);
 });
 
 module.exports = router;
