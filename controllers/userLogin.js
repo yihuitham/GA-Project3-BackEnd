@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
     const passwordValid = await verifyPassword(password, user.password);
 
     if (passwordValid) {
-      const { password, NRIC, name, ...rest } = user;
+      const { password, ...rest } = user;
       const userInfo = Object.assign({}, { ...rest });
 
       const token = createToken(userInfo);
