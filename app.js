@@ -20,18 +20,18 @@ app.use(express.static('public'));
 
 // login controller
 const loginController = require('./controllers/userLogin');
-app.use('/authenticate', loginController);
+app.use('/api/authenticate', loginController);
 
 //patient controller
 const patientController = require('./controllers/patient');
-app.use('/patient', patientController);
+app.use('/api/patient', patientController);
 
 //staff controller
 const staffController = require('./controllers/staff');
-app.use('/staff', staffController);
+app.use('/api/staff', staffController);
 
 //operation controller
 const operationController = require('./controllers/operation');
-app.use('/operation', operationController);
+app.use('/api/operation', operationController);
 
 module.exports = app;
