@@ -3,11 +3,11 @@ const staffData = [
     loginID: 'chief',
     password: 'chief123',
     NRIC: 'S1234567J',
-    name: 'Chief',
+    name: 'Tan',
     gender: 'F',
     contact: 12378,
     role: 'Chief',
-    speciality: 'Organizer',
+    speciality: 'General',
   },
   {
     loginID: 'kienwei',
