@@ -7,7 +7,7 @@ const staffData = [
     gender: 'F',
     contact: 12378,
     role: 'Chief',
-    speciality: ['general'],
+    speciality: 'Organizer',
   },
   {
     loginID: 'kienwei',
@@ -17,7 +17,7 @@ const staffData = [
     gender: 'M',
     contact: 12378,
     role: 'Doctor',
-    speciality: ['general'],
+    speciality: 'General',
   },
   {
     loginID: 'weilun',
@@ -27,7 +27,7 @@ const staffData = [
     gender: 'M',
     contact: 22378,
     role: 'Doctor',
-    speciality: ['urology'],
+    speciality: 'Urology',
   },
   {
     loginID: 'wenjie',
@@ -37,7 +37,7 @@ const staffData = [
     gender: 'M',
     contact: 27378,
     role: 'Doctor',
-    speciality: ['neurological'],
+    speciality: 'Neurological',
   },
 
   {
@@ -48,7 +48,7 @@ const staffData = [
     gender: 'M',
     contact: 12378,
     role: 'Doctor',
-    speciality: ['thoracic'],
+    speciality: 'Thoracic',
   },
 
   {
@@ -59,7 +59,7 @@ const staffData = [
     gender: 'F',
     contact: 12371,
     role: 'Nurse',
-    speciality: ['general'],
+    speciality: 'General',
   },
   {
     loginID: 'siewla',
@@ -69,7 +69,7 @@ const staffData = [
     gender: 'F',
     contact: 12331,
     role: 'Nurse',
-    speciality: ['general'],
+    speciality: 'General',
   },
   {
     loginID: 'arianne',
@@ -79,7 +79,7 @@ const staffData = [
     gender: 'F',
     contact: 12439,
     role: 'Nurse',
-    speciality: ['general'],
+    speciality: 'General',
   },
   {
     loginID: 'cynthia',
@@ -89,7 +89,7 @@ const staffData = [
     gender: 'F',
     contact: 12039,
     role: 'Nurse',
-    speciality: ['general'],
+    speciality: 'General',
   },
   {
     loginID: 'lea',
@@ -99,7 +99,7 @@ const staffData = [
     gender: 'F',
     contact: 10039,
     role: 'Nurse',
-    speciality: ['general'],
+    speciality: 'General',
   },
   {
     loginID: 'browne',
@@ -109,7 +109,7 @@ const staffData = [
     gender: 'F',
     contact: 10099,
     role: 'Nurse',
-    speciality: ['general'],
+    speciality: 'General',
   },
   {
     loginID: 'zendeya',
@@ -119,7 +119,7 @@ const staffData = [
     gender: 'F',
     contact: 10019,
     role: 'Nurse',
-    speciality: ['general'],
+    speciality: 'General',
   },
 ];
 

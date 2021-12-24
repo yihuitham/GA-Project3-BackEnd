@@ -10,7 +10,7 @@ const staffSchema = mongoose.Schema({
   gender: { type: String, require: true },
   contact: { type: Number, require: true },
   role: { type: String, require: true },
-  speciality: [{ type: String, require: true }],
+  speciality: { type: String, require: true },
 });
 
 staffSchema.plugin(AutoIncrement, { inc_field: 'staff_id' });
