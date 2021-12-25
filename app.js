@@ -13,11 +13,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 
+// cors
+const CORS_WHITELIST = process.env.CORS_WHITELIST;
+app.use(
+  cors({
+    origin: CORS_WHITELIST,
+  })
+);
+
 // static files middleware
 app.use(express.static('public'));
 
 //CONTROLLERS
-
 // login controller
 const loginController = require('./controllers/userLogin');
 app.use('/authenticate', loginController);
