@@ -1,5 +1,5 @@
 ### Create one patient
-POST http://localhost:4000/patient
+POST http://localhost:4000/api/patient
 Content-Type: application/json
 
 {
@@ -13,13 +13,13 @@ Content-Type: application/json
 }
 
 ### Read one patient
-GET  http://localhost:4000/patient/61bc315f52b377b7c8c1e4f3
+GET  http://localhost:4000/api/patient/61bc315f52b377b7c8c1e4f3
 
 ### Read all patients
-GET http://localhost:4000/patient/all
+GET http://localhost:4000/api/patient/all
 
 ### Update one patient
-PUT  http://localhost:4000/patient/61bc31cd52b377b7c8c1e4f6
+PUT  http://localhost:4000/api/patient/61bc31cd52b377b7c8c1e4f6
 Content-Type: application/json
 
 {
@@ -33,10 +33,10 @@ Content-Type: application/json
 }
 
 ### Delete one patient 
-DELETE  http://localhost:4000/patient/61bc31cd52b377b7c8c1e4f0
+DELETE  http://localhost:4000/api/patient/61bc31cd52b377b7c8c1e4f0
 
 ### Delete all patients
-DELETE   http://localhost:4000/patient/cleardata
+DELETE   http://localhost:4000/api/patient/cleardata
 
 ### Seed patients
-POST http://localhost:4000/patient/seed
+POST http://localhost:4000/api/patient/seed

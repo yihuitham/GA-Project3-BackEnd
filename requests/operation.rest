@@ -1,5 +1,5 @@
 ### Create one operation
-POST http://localhost:4000/operation
+POST http://localhost:4000/api/operation
 Content-Type: application/json
 
 {
@@ -18,13 +18,13 @@ Content-Type: application/json
   }
 
 ### Read one operation
-GET  http://localhost:4000/operation/61bf52aa0983af5ce8b62af2
+GET  http://localhost:4000/api/operation/61bf52aa0983af5ce8b62af2
 
 ### Read all operations
-GET http://localhost:4000/operation
+GET http://localhost:4000/api/operation
 
 ### Update Request
-PUT http://localhost:4000/operation/61bf52aa0983af5ce8b62af2
+PUT http://localhost:4000/api/operation/61bf52aa0983af5ce8b62af2
 Content-Type: application/json
 
 {
@@ -43,10 +43,10 @@ Content-Type: application/json
   }
 
 ### Delete one operation
-DELETE http://localhost:4000/operation/61bf528f0983af5ce8b62aec
+DELETE http://localhost:4000/api/operation/61bf528f0983af5ce8b62aec
 
 ### Delete all operation
-DELETE   http://localhost:4000/operation/cleardata
+DELETE   http://localhost:4000/api/operation/cleardata
 
 ### Seed data
-POST http://localhost:4000/operation/seed
+POST http://localhost:4000/api/operation/seed

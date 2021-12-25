@@ -1,7 +1,16 @@
+require('dotenv').config();
+const jwt = require('express-jwt');
 const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 const Staff = require('../models/staff');
+
+// add JWT verification middleware, to check the token send from client to the server before sending back the data
+// const checkJWT = jwt({
+//   secret: process.env.JWT_SECRET,
+//   issue: 'api.hospital',
+//   audience: 'api.hospital',
+// });
 
 router.get('/', (req, res) => {
   res.send('staff route');

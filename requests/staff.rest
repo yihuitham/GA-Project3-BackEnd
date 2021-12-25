@@ -1,5 +1,5 @@
 ### Create Request
-POST http://localhost:4000/staff
+POST http://localhost:4000/api/staff
 Content-Type: application/json
 
 ### Read Request
@@ -9,7 +9,7 @@ Content-Type: application/json
 ### Delete Patient Request
 
 ### Clear Database
-DELETE   http://localhost:4000/staff/cleardata
+DELETE   http://localhost:4000/api/staff/cleardata
 
 ### Seed Data
-POST http://localhost:4000/staff/seed
+POST http://localhost:4000/api/staff/seed
