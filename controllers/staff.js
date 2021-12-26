@@ -1,9 +1,31 @@
 require('dotenv').config();
 const jwt = require('express-jwt');
+const jwtDecode = require('jwt-decode');
 const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 const Staff = require('../models/staff');
+
+// attach user to the Request object/api
+const attachUser = (req, res, next) => {
+  const token = req.headers.authorization;
+  if (!token) {
+    return res.status(401).json({ message: 'Authentication invalid' });
+  }
+
+  const decodedToken = jwtDecode(token.slice(7));
+
+  if (!decodedToken) {
+    return res
+      .status(401)
+      .json({ message: 'There was a problem authorizing the request' });
+  } else {
+    req.user = decodedToken;
+    next();
+  }
+};
+
+router.use(attachUser);
 
 // add JWT verification middleware, to check the token send from client to the server before sending back the data
 const checkJWT = jwt({
@@ -18,8 +40,9 @@ router.get('/', (req, res) => {
 });
 
 // create and test API url to send staff dashboard data
-router.get('/dashboard-data', (req, res) => {
-  res.send('staff dashboard data');
+router.get('/dashboard-data', checkJWT, (req, res) => {
+  console.log(req.user);
+  return res.send('staff dashboard data');
 });
 
 // create
