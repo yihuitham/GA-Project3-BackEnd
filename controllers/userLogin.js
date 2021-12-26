@@ -11,9 +11,10 @@ const Staff = require('../models/staff');
 
 const { createToken, hashPassword, verifyPassword } = require('../util');
 
-router.use(cors());
-router.use(bodyParser.urlencoded({ extended: false }));
-router.use(bodyParser.json());
+// hi boss, these middlewares are alr injected at the app.js level, where all routes would be able to use
+// router.use(cors());
+// router.use(bodyParser.urlencoded({ extended: false }));
+// router.use(bodyParser.json());
 
 router.post('/', async (req, res) => {
   try {

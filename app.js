@@ -15,11 +15,13 @@ app.use(methodOverride('_method'));
 
 // cors
 const CORS_WHITELIST = process.env.CORS_WHITELIST;
-app.use(
-  cors({
-    origin: CORS_WHITELIST,
-  })
-);
+// app.use(
+//   cors({
+//     origin: CORS_WHITELIST,
+//     withCredentials: true,
+//   })
+// );
+app.use(cors());
 
 // static files middleware
 app.use(express.static('public'));

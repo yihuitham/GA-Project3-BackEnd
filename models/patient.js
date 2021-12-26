@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const patientSchema = mongoose.Schema({
   hospital: { type: String, require: true, default: 'Mount Elizabeth' },
   name: { type: String, require: true },
-  nric: { type: Number, require: true, min: 7, unique: true },
+  nric: { type: String, require: true, min: 9, unique: true },
   gender: { type: String, require: true },
   age: { type: Number, require: true },
   bloodType: { type: String, require: true },
