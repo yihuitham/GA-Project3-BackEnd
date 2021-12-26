@@ -6,14 +6,20 @@ const router = express.Router();
 const Staff = require('../models/staff');
 
 // add JWT verification middleware, to check the token send from client to the server before sending back the data
-// const checkJWT = jwt({
-//   secret: process.env.JWT_SECRET,
-//   issue: 'api.hospital',
-//   audience: 'api.hospital',
-// });
+const checkJWT = jwt({
+  secret: process.env.JWT_SECRET,
+  iss: 'api.hospital',
+  aud: 'api.hospital',
+  algorithms: ['HS256'],
+});
 
 router.get('/', (req, res) => {
   res.send('staff route');
+});
+
+// create and test API url to send staff dashboard data
+router.get('/dashboard-data', (req, res) => {
+  res.send('staff dashboard data');
 });
 
 // create
