@@ -35,12 +35,8 @@ const checkJWT = jwt({
   algorithms: ['HS256'],
 });
 
-router.get('/', (req, res) => {
-  res.send('staff route');
-});
-
 // create and test API url to send staff dashboard data
-router.get('/dashboard-data', checkJWT, (req, res) => {
+router.get('/', checkJWT, (req, res) => {
   console.log(req.user);
   return res.send('staff dashboard data');
 });
