@@ -8,7 +8,7 @@ const operationSchema = mongoose.Schema({
   surgeonID: { type: mongoose.Types.ObjectId, required: true, ref: 'Staff' },
   nursesID: [{ type: mongoose.Types.ObjectId, required: true, ref: 'Staff' }],
   patientID: { type: mongoose.Types.ObjectId, required: true, ref: 'Patient' },
-  date: { type: Date, require: true },
+  date: { type: String, require: true },
   time: { type: String, require: true },
   postOpReport: String,
 });

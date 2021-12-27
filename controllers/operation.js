@@ -63,6 +63,20 @@ router.get('/:_id', async (req, res) => {
   res.send(foundOperation);
 });
 
+// Find operation by room and date
+router.get('/:room/:date', async (req, res) => {
+  const { room, date } = req.params;
+  const foundOperation = await Operation.findOne({
+    operatingRoom: room,
+    date: date,
+  }).populate('patientID nursesID surgeonID');
+  if (!foundOperation) {
+    res.status(404).send({ message: 'Operation not found' });
+    return;
+  }
+  res.send(foundOperation);
+});
+
 // Update one operation
 router.put('/:_id', async (req, res) => {
   try {
