@@ -77,6 +77,8 @@ router.get('/:room/:date', async (req, res) => {
   res.send(foundOperation);
 });
 
+// Find operation by staff and date
+
 // Update one operation
 router.put('/:_id', async (req, res) => {
   try {

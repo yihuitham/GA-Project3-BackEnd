@@ -28,7 +28,7 @@ app.use(express.static('public'));
 
 //CONTROLLERS
 // login controller
-const loginController = require('./controllers/userLogin');
+const loginController = require('./controllers/authenicate');
 app.use('/api/authenticate', loginController);
 
 //patient controller

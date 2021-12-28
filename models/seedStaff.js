@@ -1,6 +1,6 @@
 const staffData = [
   {
-    loginID: 'chief',
+    loginID: 'tan',
     password: 'chief123',
     NRIC: 'S1234567J',
     name: 'Tan',
