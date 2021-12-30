@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Operation = require('../models/operation');
+const Staff = require('../models/staff');
 
 // Create one operation
 router.post('/', async (req, res) => {
@@ -78,6 +79,20 @@ router.get('/:room/:date', async (req, res) => {
 });
 
 // Find operation by staff and date
+router.get('/search/:id/:date', async (req, res) => {
+  const { id, date } = req.params;
+  // const id = `61c573b00e7ab648c11bf644`;
+  const surgeon = await Staff.findById(id);
+  const foundOperation = await Operation.findOne({
+    surgeonID: surgeon._id,
+    date: date,
+  });
+  if (!foundOperation) {
+    res.send({ message: 'Not found' });
+    return;
+  }
+  res.send(foundOperation);
+});
 
 // Update one operation
 router.put('/:_id', async (req, res) => {
