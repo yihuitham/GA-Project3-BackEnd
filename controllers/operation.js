@@ -79,19 +79,34 @@ router.get('/:room/:date', async (req, res) => {
 });
 
 // Find operation by staff and date
-router.get('/search/:id/:date', async (req, res) => {
-  const { id, date } = req.params;
+router.get('/search/:role/:id/:date', async (req, res) => {
+  const { role, id, date } = req.params;
   // const id = `61c573b00e7ab648c11bf644`;
-  const surgeon = await Staff.findById(id);
-  const foundOperation = await Operation.findOne({
-    surgeonID: surgeon._id,
-    date: date,
-  });
-  if (!foundOperation) {
-    res.send({ message: 'Not found' });
-    return;
+  const staff = await Staff.findById(id);
+
+  if (role === 'Doctor') {
+    const foundOperation = await Operation.findOne({
+      surgeonID: staff,
+      date: date,
+    });
+    if (!foundOperation) {
+      res.send({ message: 'Not found' });
+      return;
+    }
+    return res.send(foundOperation);
+  } else if (role === 'Nurse') {
+    const foundOperation = await Operation.findOne({
+      nursesID: staff,
+      date: date,
+    });
+    if (!foundOperation) {
+      res.send({ message: 'Not found' });
+      return;
+    }
+    return res.send(foundOperation);
+  } else {
+    return res.send({ message: 'Not found' });
   }
-  res.send(foundOperation);
 });
 
 // Update one operation
