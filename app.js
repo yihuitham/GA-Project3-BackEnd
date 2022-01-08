@@ -1,4 +1,5 @@
 //DEPENDENCIES
+require('dotenv').config();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('express-jwt');
@@ -15,13 +16,15 @@ app.use(methodOverride('_method'));
 
 // cors
 const CORS_WHITELIST = process.env.CORS_WHITELIST;
-// app.use(
-//   cors({
-//     origin: CORS_WHITELIST,
-//     withCredentials: true,
-//   })
-// );
-app.use(cors());
+console.log(CORS_WHITELIST);
+
+app.use(
+  cors({
+    origin: CORS_WHITELIST,
+    credentials: true,
+  })
+);
+// app.use(cors());
 
 // static files middleware
 app.use(express.static('public'));
@@ -41,6 +44,7 @@ app.use('/api/staff', staffController);
 
 //operation controller
 const operationController = require('./controllers/operation');
+const { config } = require('dotenv');
 app.use('/api/operation', operationController);
 
 module.exports = app;
