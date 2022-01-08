@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 
 // cors
-const CORS_WHITELIST = process.env.CORS_WHITELIST;
+const CORS_WHITELIST = process.env.CORS_WHITELIST.split(',');
 console.log(CORS_WHITELIST);
 
 app.use(
