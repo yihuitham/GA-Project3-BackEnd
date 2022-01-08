@@ -84,7 +84,7 @@ router.get('/search/:role/:id/:date', async (req, res) => {
   // const id = `61c573b00e7ab648c11bf644`;
   const staff = await Staff.findById(id);
 
-  if (role === 'Doctor') {
+  if (role === 'Surgeon') {
     const foundOperation = await Operation.findOne({
       surgeonID: staff,
       date: date,

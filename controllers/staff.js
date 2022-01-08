@@ -35,12 +35,16 @@ const Staff = require('../models/staff');
 //   algorithms: ['HS256'],
 // });
 
+// test route
+router.get('/', async (req, res) => {
+  console.log(req.user);
+  return res.send('staff dashboard data');
+});
+
 // read all staff data
 router.get('/all', async (req, res) => {
   const allStaffs = await Staff.find();
   return res.send(allStaffs);
-  // console.log(req.user);
-  // return res.send('staff dashboard data');
 });
 
 // read all nurses data
