@@ -1,6 +1,6 @@
 //DEPENDENCIES
 require('dotenv').config();
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const cors = require('cors');
 const jwt = require('express-jwt');
 const jwtDecode = require('jwt-decode');
