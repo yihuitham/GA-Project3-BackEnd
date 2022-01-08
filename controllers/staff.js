@@ -7,38 +7,40 @@ const router = express.Router();
 const Staff = require('../models/staff');
 
 // attach user to the Request object/api
-const attachUser = (req, res, next) => {
-  const token = req.headers.authorization;
-  if (!token) {
-    return res.status(401).json({ message: 'Authentication invalid' });
-  }
+// const attachUser = (req, res, next) => {
+//   const token = req.headers.authorization;
+//   if (!token) {
+//     return res.status(401).json({ message: 'Authentication invalid' });
+//   }
 
-  const decodedToken = jwtDecode(token.slice(7));
+//   const decodedToken = jwtDecode(token.slice(7));
 
-  if (!decodedToken) {
-    return res
-      .status(401)
-      .json({ message: 'There was a problem authorizing the request' });
-  } else {
-    req.user = decodedToken;
-    next();
-  }
-};
+//   if (!decodedToken) {
+//     return res
+//       .status(401)
+//       .json({ message: 'There was a problem authorizing the request' });
+//   } else {
+//     req.user = decodedToken;
+//     next();
+//   }
+// };
 
-router.use(attachUser);
+// router.use(attachUser);
 
 // add JWT verification middleware, to check the token send from client to the server before sending back the data
-const checkJWT = jwt({
-  secret: process.env.JWT_SECRET,
-  iss: 'api.hospital',
-  aud: 'api.hospital',
-  algorithms: ['HS256'],
-});
+// const checkJWT = jwt({
+//   secret: process.env.JWT_SECRET,
+//   iss: 'api.hospital',
+//   aud: 'api.hospital',
+//   algorithms: ['HS256'],
+// });
 
 // read all staff data
-router.get('/', checkJWT, (req, res) => {
-  console.log(req.user);
-  return res.send('staff dashboard data');
+router.get('/', async (req, res) => {
+  const allStaff = await Staff.find();
+  return res.send(allStaff);
+  // console.log(req.user);
+  // return res.send('staff dashboard data');
 });
 
 // create
