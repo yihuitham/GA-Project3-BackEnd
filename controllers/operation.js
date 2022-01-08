@@ -88,7 +88,7 @@ router.get('/search/:role/:id/:date', async (req, res) => {
     const foundOperation = await Operation.findOne({
       surgeonID: staff,
       date: date,
-    });
+    }).populate('patientID nursesID surgeonID');
     if (!foundOperation) {
       res.send({ message: 'Not found' });
       return;
@@ -98,7 +98,7 @@ router.get('/search/:role/:id/:date', async (req, res) => {
     const foundOperation = await Operation.findOne({
       nursesID: staff,
       date: date,
-    });
+    }).populate('patientID nursesID surgeonID');
     if (!foundOperation) {
       res.send({ message: 'Not found' });
       return;
@@ -106,6 +106,27 @@ router.get('/search/:role/:id/:date', async (req, res) => {
     return res.send(foundOperation);
   } else {
     return res.send({ message: 'Not found' });
+  }
+});
+
+// Update post-operation report by room and date
+router.patch('/updateReport/:room/:date', async (req, res) => {
+  const { room, date } = req.params;
+  const report = req.body.report;
+  // const id = `61c573b00e7ab648c11bf644`;
+  console.log(req.body);
+  try {
+    const update = await Operation.findOneAndUpdate(
+      {
+        operatingRoom: room,
+        date: date,
+      },
+      { postOpReport: report },
+      { new: true }
+    );
+    console.log(update);
+  } catch (error) {
+    console.log(error);
   }
 });
 
