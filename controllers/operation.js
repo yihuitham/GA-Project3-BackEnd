@@ -6,6 +6,7 @@ const Staff = require('../models/staff');
 
 // Create one operation
 router.post('/', async (req, res) => {
+  console.log(req.body);
   try {
     const foundOperation = await Operation.findOne({
       operatingRoom: req.body.operatingRoom,
@@ -13,7 +14,10 @@ router.post('/', async (req, res) => {
     });
     if (!foundOperation) {
       const surgeonIDStr = req.body.surgeonID;
-      const surgeonID = mongoose.Types.ObjectId(surgeonIDStr);
+      // const surgeonID = mongoose.Types.ObjectId(surgeonIDStr);
+      const surgeonID = surgeonIDStr.map((surgeon) => {
+        return mongoose.Types.ObjectId(surgeon);
+      });
 
       const nursesIDStr = req.body.nursesID;
       const nursesID = nursesIDStr.map((nurse) => {
@@ -25,6 +29,7 @@ router.post('/', async (req, res) => {
 
       const newOperation = await Operation.create({
         operatingRoom: req.body.operatingRoom,
+        operation: req.body.operation,
         surgeonID,
         nursesID,
         patientID,
