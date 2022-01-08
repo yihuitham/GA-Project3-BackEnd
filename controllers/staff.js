@@ -36,9 +36,25 @@ const Staff = require('../models/staff');
 // });
 
 // read all staff data
-router.get('/', async (req, res) => {
-  const allStaff = await Staff.find();
-  return res.send(allStaff);
+router.get('/all', async (req, res) => {
+  const allStaffs = await Staff.find();
+  return res.send(allStaffs);
+  // console.log(req.user);
+  // return res.send('staff dashboard data');
+});
+
+// read all nurses data
+router.get('/nurses', async (req, res) => {
+  const allNurses = await Staff.find({ role: 'Nurse' });
+  return res.send(allNurses);
+  // console.log(req.user);
+  // return res.send('staff dashboard data');
+});
+
+// read all surgeons data
+router.get('/surgeons', async (req, res) => {
+  const allSurgeons = await Staff.find({ role: 'Surgeon' });
+  return res.send(allSurgeons);
   // console.log(req.user);
   // return res.send('staff dashboard data');
 });

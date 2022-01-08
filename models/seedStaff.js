@@ -52,10 +52,10 @@ const staffData = [
   },
 
   {
-    loginID: 'yihui',
+    loginID: 'cassey',
     password: 'yihui',
     NRIC: 'S1234519J',
-    name: 'Yi Hui',
+    name: 'Cassey',
     gender: 'F',
     contact: 12371,
     role: 'Nurse',
