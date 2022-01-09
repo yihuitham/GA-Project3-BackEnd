@@ -64,10 +64,12 @@ router.get('/surgeons', async (req, res) => {
 });
 
 // create
-router.post('/', async (req, res) => {
+router.post('/new', async (req, res) => {
   try {
-    const foundStaff = await Staff.findOne({ NRIC: req.body.NRIC });
-    if (!foundStaff) {
+    const foundNRIC = await Staff.findOne({ NRIC: req.body.NRIC });
+    const foundLoginID = await Staff.findOne({ loginID: req.body.loginID });
+
+    if (!foundNRIC && !foundLoginID) {
       const loginID = req.body.loginID;
       const password = await bcrypt.hash(req.body.password, 10);
       const NRIC = req.body.NRIC;
@@ -75,7 +77,22 @@ router.post('/', async (req, res) => {
       const gender = req.body.gender;
       const contact = req.body.contact;
       const role = req.body.role;
-      const specialty = req.body.speciality;
+      const speciality = req.body.speciality;
+
+      if (
+        loginID.length < 3 ||
+        password.length < 3 ||
+        NRIC.length < 3 ||
+        name.length < 3 ||
+        gender.length < 1 ||
+        !parseInt(contact) ||
+        contact.length < 3 ||
+        role.length < 3 ||
+        speciality.length < 3
+      ) {
+        res.status(403).send({ message: 'Invalid input!' });
+        return;
+      }
 
       const newStaff = await Staff.create({
         loginID,
@@ -85,12 +102,12 @@ router.post('/', async (req, res) => {
         gender,
         contact,
         role,
-        specialty,
+        speciality,
       });
 
-      res.send(newStaff);
-    } else {
-      res.status(403).send({ message: 'Staff ID already exist' });
+      res.status(200).send({ message: 'New user is added successfully!' });
+    } else if (foundNRIC || foundLoginID) {
+      res.status(403).send({ message: 'Staff ID already exist!' });
       return;
     }
   } catch {
@@ -107,7 +124,7 @@ router.post('/', async (req, res) => {
       const newStaff = await Staff.create(req.body);
       res.send(newStaff);
     } else {
-      res.status(403).send({ message: 'Staff ID already exist' });
+      res.status(403).send({ message: 'Staff ID/NRIC already exist!' });
       return;
     }
   } catch {
@@ -118,27 +135,56 @@ router.post('/', async (req, res) => {
 
 // update staff details
 router.post('/edit', async (req, res) => {
+  console.log('req body', req.body);
+  const foundStaff = await Staff.findById(req.body.id);
+  console.log(foundStaff);
   try {
     const foundStaff = await Staff.findById(req.body.id);
     if (!foundStaff) {
-      res.status(403).send({ message: 'Staff ID not found' });
+      res.status(403).send({ message: 'Staff ID not found!' });
       return;
     } else {
+      if (
+        req.body.name.length < 3 ||
+        req.body.gender.length < 1 ||
+        !parseInt(req.body.contact) ||
+        req.body.contact.length < 3 ||
+        req.body.role.length < 3 ||
+        req.body.speciality.length < 3
+      ) {
+        res.status(403).send({ message: 'Invalid input!' });
+        return;
+      }
       const updateStaff = await Staff.findByIdAndUpdate(req.body.id, {
         name: req.body.name,
-        NRIC: req.body.NRIC,
         role: req.body.role,
         gender: req.body.gender,
         contact: req.body.contact,
         speciality: req.body.speciality,
       });
-      res.send(updateStaff);
+      res.status(200).send({ message: 'Staff details updated successfully!' });
       return;
     }
   } catch {
     res.status(500).send({ message: 'Unexpected Error' });
     return;
   }
+});
+
+// delete select staff
+router.delete('/delete/:id', async (req, res) => {
+  try {
+    const deleteStaff = await Staff.findByIdAndRemove(req.params.id).exec();
+    res.status(200).send({ message: 'Staff id delete!' });
+    return;
+  } catch (error) {
+    res.status(500).send({ message: 'Unexpected Error' });
+    return;
+  }
+
+  return;
+  // await Staff.deleteMany();
+  // res.send('Staff database cleared');
 });
 
 //clear staff data
