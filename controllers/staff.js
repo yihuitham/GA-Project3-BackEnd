@@ -116,6 +116,31 @@ router.post('/', async (req, res) => {
   }
 });
 
+// update staff details
+router.post('/edit', async (req, res) => {
+  try {
+    const foundStaff = await Staff.findById(req.body.id);
+    if (!foundStaff) {
+      res.status(403).send({ message: 'Staff ID not found' });
+      return;
+    } else {
+      const updateStaff = await Staff.findByIdAndUpdate(req.body.id, {
+        name: req.body.name,
+        NRIC: req.body.NRIC,
+        role: req.body.role,
+        gender: req.body.gender,
+        contact: req.body.contact,
+        speciality: req.body.speciality,
+      });
+      res.send(updateStaff);
+      return;
+    }
+  } catch {
+    res.status(500).send({ message: 'Unexpected Error' });
+    return;
+  }
+});
+
 //clear staff data
 router.delete('/cleardata', async (req, res) => {
   await Staff.deleteMany();
