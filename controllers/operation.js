@@ -145,7 +145,7 @@ router.put('/:_id', async (req, res) => {
       req.body,
       { new: true }
     );
-    console.log(updateOperation);
+    // console.log(updateOperation);
     res.send(updateOperation);
     return;
   } catch {
@@ -162,6 +162,7 @@ router.delete('/cleardata', async (req, res) => {
 
 // Delete one operation
 router.delete('/:_id', async (req, res) => {
+  console.log(req.params._id);
   const deleteOperation = await Operation.findByIdAndDelete(req.params._id);
   if (!deleteOperation) {
     res
