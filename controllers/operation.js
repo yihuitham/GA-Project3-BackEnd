@@ -137,25 +137,17 @@ router.patch('/updateReport/:room/:date', async (req, res) => {
 
 // Update one operation
 router.put('/:_id', async (req, res) => {
+  console.log(req.params._id);
+  console.log(req.body);
   try {
-    const foundOperation = await Operation.findOne({
-      operatingRoom: req.body.operatingRoom,
-      date: req.body.date,
-    });
-    if (foundOperation._id === req.params._id) {
-      const updateOperation = await Operation.findByIdAndUpdate(
-        req.params._id,
-        req.body,
-        { new: true }
-      );
-      res.send(updateOperation);
-      return;
-    } else {
-      res
-        .status(403)
-        .send({ message: 'Operation room not available on selected date' });
-      return;
-    }
+    const updateOperation = await Operation.findByIdAndUpdate(
+      req.params._id,
+      req.body,
+      { new: true }
+    );
+    console.log(updateOperation);
+    res.send(updateOperation);
+    return;
   } catch {
     res.status(500).send({ message: 'Unexpected Error' });
     return;
