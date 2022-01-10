@@ -3,14 +3,34 @@ const router = express.Router();
 const Patient = require('../models/patient');
 
 // Create one patient
-router.post('/', async (req, res) => {
+router.post('/new', async (req, res) => {
   try {
     const foundPatient = await Patient.findOne({ nric: req.body.nric });
     if (!foundPatient) {
+      const nric = req.body.nric;
+      const name = req.body.name;
+      const gender = req.body.gender;
+      const age = req.body.age;
+      const bloodType = req.body.bloodType;
+      const allergy = req.body.allergy;
+      const medicalCondition = req.body.medicalCondition;
+
+      if (
+        nric.length < 3 ||
+        name.length < 3 ||
+        gender.length < 1 ||
+        gender.length < 1 ||
+        !parseInt(age) ||
+        bloodType.length < 1
+      ) {
+        res.status(403).send({ message: 'Invalid input!' });
+        return;
+      }
       const newPatient = await Patient.create(req.body);
-      res.send(newPatient);
+      res.status(200).send({ message: 'New Patient is added successfully!' });
+      return;
     } else {
-      res.status(403).send({ message: 'NRIC already exist' });
+      res.status(403).send({ message: `Patient's NRIC already existed!` });
       return;
     }
   } catch {
