@@ -56,17 +56,40 @@ router.get('/:_id', async (req, res) => {
 });
 
 // Update one patient
-router.put('/:_id', async (req, res) => {
-  const updatePatient = await Patient.findByIdAndUpdate(
-    req.params._id,
-    req.body,
-    { new: true }
-  );
-  if (!updatePatient) {
-    res.status(400).send({ message: 'Patient update unsuccessful' });
+router.post('/edit', async (req, res) => {
+  console.log(req.body);
+
+  try {
+    const foundPatient = await Patient.findById(req.body.id);
+    if (!foundPatient) {
+      res.status(403).send({ message: 'Staff ID not found!' });
+      return;
+    } else {
+      if (
+        req.body.name.length < 3 ||
+        !parseInt(req.body.age) ||
+        req.body.bloodType.length < 1
+      ) {
+        res.status(403).send({ message: 'Invalid input!' });
+        return;
+      }
+      const updatePatient = await Patient.findByIdAndUpdate(req.body.id, {
+        name: req.body.name,
+        gender: req.body.gender,
+        age: req.body.age,
+        bloodType: req.body.bloodType,
+        allergy: req.body.allergy,
+        medicalCondition: req.body.medicalCondition,
+      });
+      res
+        .status(200)
+        .send({ message: 'Patient details updated successfully!' });
+      return;
+    }
+  } catch {
+    res.status(500).send({ message: 'Unexpected Error' });
     return;
   }
-  res.send(updatePatient);
 });
 
 // Delete all patients
