@@ -99,15 +99,15 @@ router.delete('/cleardata', async (req, res) => {
 });
 
 //Delete one patient
-router.delete('/:_id', async (req, res) => {
-  const deletePatient = await Patient.findByIdAndDelete(req.params._id);
-  if (!deletePatient) {
-    res
-      .status(400)
-      .send({ message: 'Patient not found, deletion unsuccessful' });
+router.delete('/delete/:_id', async (req, res) => {
+  try {
+    const deletePatient = await Patient.findByIdAndDelete(req.params._id);
+    res.status(200).send({ message: 'Patient id deleted successfully!' });
+    return;
+  } catch (error) {
+    res.status(500).send({ message: 'Unexpected Error' });
     return;
   }
-  res.send(deletePatient);
 });
 
 // Seed patients
