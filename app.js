@@ -53,7 +53,7 @@ const attachUser = (req, res, next) => {
   }
 };
 
-// app.use(attachUser);
+app.use(attachUser);
 
 //patient controller
 const patientController = require('./controllers/patient');
